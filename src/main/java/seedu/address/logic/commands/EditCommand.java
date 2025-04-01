@@ -5,7 +5,6 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ISMEMBER;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
@@ -41,18 +40,17 @@ public class EditCommand extends Command {
             + "Existing values will be overwritten by the input values.\n"
             + "Parameters: INDEX (must be a positive integer) "
             + "[" + PREFIX_NAME + "NAME] "
-            + "[" + PREFIX_PHONE + "PHONE] "
             + "[" + PREFIX_EMAIL + "EMAIL] "
             + "[" + PREFIX_ADDRESS + "ADDRESS] "
+            + "[" + PREFIX_ISMEMBER + "IS_MEMBER]"
             + "[" + PREFIX_TAG + "TAG]...\n"
-            + "[" + PREFIX_ISMEMBER + "IS_MEMBER]\n"
             + "Example: " + COMMAND_WORD + " 1 "
-            + PREFIX_PHONE + "91234567 "
             + PREFIX_EMAIL + "johndoe@example.com";
 
     public static final String MESSAGE_EDIT_PERSON_SUCCESS = "Edited Person: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
     public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the address book.";
+    public static final String MESSAGE_PHONE_NUMBER_EDIT_DISALLOWED = "Editing phone number is not allowed.";
 
     private final Index index;
     private final EditPersonDescriptor editPersonDescriptor;
@@ -85,6 +83,11 @@ public class EditCommand extends Command {
             throw new CommandException(MESSAGE_DUPLICATE_PERSON);
         }
 
+        // Prevent editing of phone number for our use case
+        if (editPersonDescriptor.getPhone().isPresent()) {
+            throw new CommandException(MESSAGE_PHONE_NUMBER_EDIT_DISALLOWED);
+        }
+
         model.setPerson(personToEdit, editedPerson);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
         return new CommandResult(String.format(MESSAGE_EDIT_PERSON_SUCCESS, Messages.format(editedPerson)));
@@ -103,8 +106,10 @@ public class EditCommand extends Command {
         Address updatedAddress = editPersonDescriptor.getAddress().orElse(personToEdit.getAddress());
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
         Boolean updatedIsMember = editPersonDescriptor.getIsMember().orElse(personToEdit.getMemberStatus());
+        Set<Integer> updatedBookings = personToEdit.getBookingIDs();
 
-        return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags, updatedIsMember);
+        return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags, updatedIsMember,
+                updatedBookings);
     }
 
     @Override
@@ -142,6 +147,7 @@ public class EditCommand extends Command {
         private Address address;
         private Set<Tag> tags;
         private Boolean isMember;
+        private Set<Integer> bookingIDs;
 
         public EditPersonDescriptor() {}
 
@@ -156,6 +162,7 @@ public class EditCommand extends Command {
             setAddress(toCopy.address);
             setTags(toCopy.tags);
             setIsMember(toCopy.isMember);
+            setBookingIDs(toCopy.bookingIDs);
         }
 
         /**
@@ -220,6 +227,23 @@ public class EditCommand extends Command {
 
         public Optional<Boolean> getIsMember() {
             return Optional.ofNullable(isMember);
+        }
+
+        /**
+         * Sets {@code bookingIDs} to this object's {@code bookingIDs}.
+         * A defensive copy of {@code bookingIDs} is used internally.
+         */
+        public void setBookingIDs(Set<Integer> bookingIDs) {
+            this.bookingIDs = (bookingIDs != null) ? new HashSet<>(bookingIDs) : null;
+        }
+
+        /**
+         * Returns an unmodifiable tag set, which throws {@code UnsupportedOperationException}
+         * if modification is attempted.
+         * Returns {@code Optional#empty()} if {@code bookingIDs} is null.
+         */
+        public Optional<Set<Integer>> getBookingIDs() {
+            return (bookingIDs != null) ? Optional.of(Collections.unmodifiableSet(bookingIDs)) : Optional.empty();
         }
 
         @Override
