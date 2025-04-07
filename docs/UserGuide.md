@@ -31,15 +31,15 @@ as KrustyKrab allows you to save a person's information without them necessarily
 
 ---
 ## Table of Contents
-1. [Quick Start](#quick-start)
-2. [Command Overview](#command-overview)
-3. [Person Commands](#person-commands)
-4. [Booking Commands](#booking-commands)
-5. [General Commands](#general-commands)
-6. [FAQ](#faq)
-7. [Known Issues](#known-issues)
-8. [Command Summary](#command-summary)
-9. [Glossary](#glossary)
+1. [Quick Start](#1-quick-start)
+2. [Command Overview](#2-command-overview)
+3. [Person Commands](#3-person-commands)
+4. [Booking Commands](#4-booking-commands)
+5. [General Commands](#5-general-commands)
+6. [FAQ](#6-faq)
+7. [Known Issues](#7-known-issues)
+8. [Command Summary](#8-command-summary)
+9. [Glossary](#9-glossary)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -96,9 +96,9 @@ Some example commands you can try:
 
 The commands you can use in KrustyKrab are split into **3 different types**:
 
-- [Person Commands](#person-commands)
-- [Booking Commands](#booking-commands)
-- [General Commands](#general-commands)
+- [Person Commands](#3-person-commands)
+- [Booking Commands](#4-booking-commands)
+- [General Commands](#5-general-commands)
 
 Let's walk you through some basics of the command format.
 
@@ -409,7 +409,7 @@ even though it is not currently displayed.
 Example:
 * `mark b/2 s/COMPLETED` marks the booking with ID 2 as completed.
 
-mark b/1 s/COMPLETED
+`mark b/1 s/COMPLETED`
 ![mark_showcase](images/markshowcase.png)
 
 <br>
