@@ -21,8 +21,8 @@ public class DeleteBookingCommand extends Command {
     public static final String COMMAND_WORD = "bdelete";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Deletes the booking identified by the index number used in the displayed booking list.\n"
-            + "Parameters: INDEX (must be a positive integer)\n"
+            + ": Deletes the booking identified by the Booking ID used in the displayed booking list.\n"
+            + "Parameters: BOOKING_ID (must be a positive integer)\n"
             + "Example: " + COMMAND_WORD + " 1";
 
     public static final String MESSAGE_DELETE_BOOKING_SUCCESS = "Deleted Booking: %1$s";

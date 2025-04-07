@@ -6,14 +6,17 @@
 
 # User Guide
 
+
 **KrustyKrab** is a lightweight and responsive desktop app for **restaurant staff** to quickly manage customer 
 information and bookings. It is designed to be simple yet efficient.
+
 
 At a glance, KrustyKrab allows you to:
 
 - Easily manage customer information and their details.
 - Efficiently manage and keep track of your customers' bookings and its status or details.
 - Quickly view or filter relevant bookings or customers through the simple user interface.
+
 
 
 KrustyKrab is optimized for use via keyboard commands without compromising aesthetics or user-friendliness. 
@@ -41,7 +44,7 @@ as KrustyKrab allows you to save a person's information without them necessarily
 
 ## Quick start
 
-1. Ensure you have Java `17` or above installed in your computer.<br>
+1. Ensure you have Java `17` or above installed on your computer.<br>
    **Mac users:** Ensure you have the precise JDK version prescribed [here](https://se-education.org/guides/tutorials/javaInstallationMac.html).
 
 2. Download the latest `krustykrab.jar` file from [here](https://github.com/AY2425S2-CS2103T-T08-2/tp/releases).
@@ -60,7 +63,8 @@ but a **blank folder** is recommended.)
    java -jar krustykrab.jar
    ```
    A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
-   ![Ui](images/Ui.png)
+   ![Ui](images/StartingUI.png)
+
 
 6. Type a command in the command box and press _Enter_ to execute it.  
 **Example:** Typing **`help`** and pressing _Enter_ will open the help window.
@@ -74,6 +78,7 @@ Some example commands you can try:
    * `badd d/2021-10-01 3:00 PM p/98765432 x/5` : Adds a booking to the person with phone number 98765432.
    * `exit` : Exits the app.
 
+<br>
 --------------------------------------------------------------------------------------------------------------------
 
 ## Command Overview
@@ -128,6 +133,7 @@ A person has a **name, phone number, email, address, membership status** and opt
 
 KrustyKrab does not allow more than 1 person to have the same phone number.
 
+
 </box>
 
 <br>
@@ -141,6 +147,7 @@ Format: `padd n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [m/IS_MEMBER] [t/TAG]…�
 <box type="tip" seamless>
 
 **Tips:**
+- A person's name must contain only alphanumeric characters.
 - A person's default membership status is false unless you set it to true.
 - A person can have any number of tags (including 0)
 
@@ -167,6 +174,7 @@ Format:
 - At least one field must be provided.
 - You **cannot edit the phone number** of a person.
 - `IS_MEMBER` should be `true`/`false`, `1`/`0` or `yes`/`no` (Case Insensitive).
+
 - Editing tags will replace all existing tags with the new set. To clear all tags, use `t/` without any value.
 
 </box>
@@ -190,6 +198,7 @@ Format: `pdelete INDEX`
 - `INDEX` **must be a positive integer** 1, 2, 3, …​
   </box>
 
+
 <box type="warning" seamless>
 
 **Caution**: Deleting a person also deletes their associated bookings!
@@ -197,8 +206,8 @@ Format: `pdelete INDEX`
 </box>
 
 Examples:
-* `list` followed by `delete 2` deletes the 2nd person in the persons list.
-* `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
+* `list` followed by `pdelete 2` deletes the 2nd person in the persons list.
+* `find Betsy` followed by `pdelete 1` deletes the 1st person in the results of the `find` command.
 
 <br>
 
@@ -247,6 +256,7 @@ Format: `plist`
 ## Booking Commands
 A person can have **zero, one or more** bookings, but each booking must have **exactly one** associated person, 
 which is referenced via their phone number.
+
 
 <br>
 
@@ -332,6 +342,7 @@ even though it is not currently displayed.
 
 </box>
 
+
 Examples:
 * `bdelete 2` deletes the booking with ID 2.
 
@@ -405,6 +416,24 @@ Shows all bookings in the bookings list.
 Format:
 * `blist` : Lists only upcoming bookings.
 * `blist /all` : Lists **all** bookings (including completed/cancelled).
+
+<br>
+
+### Summarising bookings of the day: `today`
+
+Shows all bookings scheduled for today and the persons who made those bookings.
+
+Format: `today`
+
+* Displays all bookings for the current date.
+* Also shows a summary count of upcoming, completed and cancelled bookings for today.
+* Shows the list of persons who have bookings today.
+
+Example:
+* `today` → Lists all of today's bookings and persons who made those bookings.
+
+`today`
+![today](images/today.png)
 
 <br>
 
@@ -523,18 +552,18 @@ _Details coming soon ..._
 Action                | Format, Examples
 ----------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------
 **Add Person**      | `padd n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [m/IS_MEMBER] [t/TAG]…​` <br> e.g., `padd n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend`
-**Add Booking**       | `badd d/DATE_TIME p/PHONE x/PAX [r/REMARK]` <br> e.g., `badd d/2025-04-03 2:30 PM p/98765432 x/5 r/Birthday Celebration`
-**List Person**    | `plist`
-**List Bookings**     | `blist`<br> `blist /all`
 **Edit Person**     | `pedit INDEX [n/NAME] [e/EMAIL] [a/ADDRESS] [m/IS_MEMBER] [t/TAG]…​` <br> e.g.,`pedit 3 a/123 Sunset Way m/true t/friend t/vip`
-**Edit Booking**      | `bedit b/BOOKING_ID [d/DATETIME] [x/PAX] [r/REMARK]` <br> e.g., `bedit b/1 d/2025-04-01 9:00 PM x/4 r/Anniversary`
 **Delete Person**   | `pdelete INDEX` <br> e.g., `pdelete 3`
-**Delete Booking**    | `bdelete INDEX` <br> e.g., `bdelete 2`
 **Find Person**    | `find KEYWORD [MORE_KEYWORDS]` <br> e.g., `find James Jake`
-**Filter Bookings**   | `filter [p/PHONE_NUMBER] [d/DATE] [s/STATUS]` <br> e.g., `filter p/98765432`, `filter d/2023-12-25`, `filter s/COMPLETED`
+**List Person**    | `plist`
+**Add Booking**       | `badd d/DATE_TIME p/PHONE x/PAX [r/REMARK]` <br> e.g., `badd d/2025-04-03 2:30 PM p/98765432 x/5 r/Birthday Celebration`
+**Edit Booking**      | `bedit b/BOOKING_ID [d/DATETIME] [x/PAX] [r/REMARK]` <br> e.g., `bedit b/1 d/2025-04-01 9:00 PM x/4 r/Anniversary`
+**Delete Booking**    | `bdelete INDEX` <br> e.g., `bdelete 2`
 **Mark Booking**      | `mark b/BOOKING_ID s/STATUS` <br> e.g., `mark b/2 s/COMPLETED`
+**Filter Bookings**   | `filter [p/PHONE_NUMBER] [d/DATE] [s/STATUS]` <br> e.g., `filter p/98765432`, `filter d/2023-12-25`, `filter s/COMPLETED`
+**List Bookings**     | `blist`<br> `blist /all`
 **Today's Bookings**  | `today`
-**Clear All**         | `clearall`
 **Clear Bookings**    | `clearbookings`
+**Clear All**         | `clearall`
 **Help**              | `help`
 **Exit**              | `exit`
