@@ -601,7 +601,7 @@ Action                | Format, Examples
 * **Command Terminal**: A text-based interface where users can type and execute commands directly on their operating system (e.g., Command Prompt on Windows, Terminal on macOS/Linux).
 * **Oracle**: A software company that maintains the official Java Development Kit (JDK) and provides downloadable versions of Java for developers.
 * **JDK (Java Development Kit)**: A software development environment that provides tools necessary to write, compile, and run Java applications. It includes the Java Runtime Environment (JRE), compiler, and other development tools.
-* **cd**: Stands for "change directory". A command used in the terminal to navigate to a specific folder on your computer. e.g. `cd C:\Users\MyFolder`.
+* **cd**: Stands for "change directory". A command used in the terminal to navigate to a specific folder on your computer. For example, `cd C:\Users\MyFolder`.
 * **Command**: An instruction typed into the terminal or KrustyKrab’s command box to perform a specific action. For example, `padd` adds a new person.
-* **Parameter**: A specific part of a command that provides input values. For instance, in `padd n/John Doe`, `n/John Doe` is a parameter that specifies the name.
+* **Parameter**: A specific part of a command that provides input values. For example, in `padd n/John Doe`, `n/John Doe` is a parameter that specifies the name.
 * **JSON (JavaScript Object Notation)**: A lightweight data format used to store KrustyKrab’s data (e.g., persons and bookings). It is saved automatically in a `.json` file and can be edited manually if needed.
