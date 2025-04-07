@@ -6,21 +6,31 @@
 
 # User Guide
 
-**KrustyKrab** is a lightweight and responsive desktop app for **restaurant staff** to quickly manage patron information and bookings.
+**KrustyKrab** is a lightweight and responsive desktop app for **restaurant staff** to quickly manage customer 
+information and bookings. It is designed to be simple yet efficient.
 
-KrustyKrab allows you to:
+At a glance, KrustyKrab allows you to:
 
-- Keep track of your patrons' **contacts** and **bookings**.
-- Easily view all upcoming bookings at a glance through our **bookings view**.
-- **Add, edit**, and **cancel** bookings with just a few keystrokes.
+- Easily manage customer information and their details.
+- Efficiently manage and keep track of your customers' bookings and its status or details.
+- Quickly view or filter relevant bookings or customers through the simple user interface.
 
-KrustyKrab is optimized for use via keyboard commands while still being visually pleasing and user-friendly. If you type fast, you’ll get your booking tasks done quicker than with any mouse-based system.
+
+KrustyKrab is optimized for use via keyboard commands without compromising aesthetics or user-friendliness. 
+If you type fast, you’ll get your booking tasks done much quicker than with any mouse-based system.
+
+<box type="info" seamless>
+
+**IMPORTANT:** From here onwards, customers are referred to as **persons** in this user guide. This is for standardization purposes, 
+as KrustyKrab allows you to save a person's information without them necessarily having a booking.
+
+</box>
 
 ---
 ## Table of Contents
 1. [Quick Start](#quick-start)
 2. [Command Overview](#command-overview)
-3. [Patron Commands](#patron-commands)
+3. [Person Commands](#person-commands)
 4. [Booking Commands](#booking-commands)
 5. [General Commands](#general-commands)
 6. [FAQ](#faq)
@@ -36,23 +46,32 @@ KrustyKrab is optimized for use via keyboard commands while still being visually
 
 2. Download the latest `krustykrab.jar` file from [here](https://github.com/AY2425S2-CS2103T-T08-2/tp/releases).
 
-3. Copy the file to the folder you want to use as the _home folder_ for KrustyKrab.
+3. Copy the file to the folder you want to use as the home folder for KrustyKrab. (You may use any folder you like, 
+but a **blank folder** is recommended.)
 
-4. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar krustykrab.jar` command to run the application.  
-**Example**: `cd C:\Users\JasonLim\KrustyHomeFolder\`<br><br>
-A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
-![Ui](images/Ui.png)
+4. Open a command terminal and navigate into the folder in which you put the jar file using the `cd` (change directory) command. 
+   For example, if you put the jar file in `C:\Users\JasonLim\KrustyHomeFolder\`, type the following command in the terminal and press _Enter_:
+   ```bash
+   cd C:\Users\JasonLim\KrustyHomeFolder\
+   ```
 
-5. Type a command in the command box and press _Enter_ to execute it.  
+5. Type the following command into the command terminal and press _Enter_ to run the application.
+   ```bash
+   java -jar krustykrab.jar
+   ```
+   A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
+   ![Ui](images/Ui.png)
+
+6. Type a command in the command box and press _Enter_ to execute it.  
 **Example:** Typing **`help`** and pressing _Enter_ will open the help window.
 
 <br>
 
 Some example commands you can try:
 
-   * `plist` : Lists all patrons.
-   * `padd n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a patron named `John Doe` to the patron list.
-   * `badd d/2021-10-01 3:00 PM p/98765432 x/5` : Adds a booking to the patron with phone number 98765432.
+   * `plist` : Lists all persons.
+   * `padd n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a person named `John Doe` to the person list.
+   * `badd d/2021-10-01 3:00 PM p/98765432 x/5` : Adds a booking to the person with phone number 98765432.
    * `exit` : Exits the app.
 
 --------------------------------------------------------------------------------------------------------------------
@@ -61,13 +80,13 @@ Some example commands you can try:
 
 <box type="tip" seamless>
 
-**Tip:** Refer to the [Command Summary](#command-summary) for a table containing the full list of commands.
+**Tips:** Refer to the [Command Summary](#command-summary) for a table containing the full list of commands.
 
 </box>
 
 The commands you can use in KrustyKrab are split into **3 different types**:
 
-- [Patron Commands](#patron-commands)
+- [Person Commands](#person-commands)
 - [Booking Commands](#booking-commands)
 - [General Commands](#general-commands)
 
@@ -100,30 +119,30 @@ Each command consists of a **command word**, and zero or more **parameters**.
 </box>
 
 --------------------------------------------------------------------------------------------------------------------
-## Patron Commands
-A patron has a **name, phone number, email, address, membership status** and optionally, **tags**.
+## Person Commands
+A person has a **name, phone number, email, address, membership status** and optionally, **tags**.
 
 <box type="note" seamless>
 
 **Note:** 
 
-Patrons with the same phone number will be counted as **duplicate** patrons.
+KrustyKrab does not allow more than 1 person to have the same phone number.
 
 </box>
 
 <br>
 
-### Adding a patron: `padd`
+### Adding a person: `padd`
 
-Adds a patron to the patrons list.
+Adds a person to the persons list.
 
 Format: `padd n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [m/IS_MEMBER] [t/TAG]…​`
 
 <box type="tip" seamless>
 
 **Tips:**
-- A patron's default membership status is false unless you set it to true.
-- A patron can have any number of tags (including 0)
+- A person's default membership status is false unless you set it to true.
+- A person can have any number of tags (including 0)
 
 </box>
 
@@ -133,9 +152,9 @@ Examples:
 
 <br>
 
-### Editing a patron: `pedit`
+### Editing a person: `pedit`
 
-Edits the details of the patron identified by the index number in the displayed patrons list.  
+Edits the details of the person identified by the index number in the displayed persons list.  
 Existing values will be overwritten by the input values.
 
 Format:  
@@ -144,10 +163,10 @@ Format:
 <box type="tip" seamless>
 
 **Tips:**
-- `INDEX` refers to the position of the patron in the **last shown patron list** (must be a positive integer).
+- `INDEX` refers to the position of the person in the **displayed person list** (must be a positive integer).
 - At least one field must be provided.
-- You **cannot edit the phone number** of a patron.
-- `IS_MEMBER` should be `true` or `false`.
+- You **cannot edit the phone number** of a person.
+- `IS_MEMBER` should be `true`/`false`, `1`/`0` or `yes`/`no` (Case Insensitive).
 - Editing tags will replace all existing tags with the new set. To clear all tags, use `t/` without any value.
 
 </box>
@@ -159,30 +178,33 @@ Examples:
 
 <br>
 
-### Deleting a patron : `pdelete`
-Deletes the specified patron from patrons list.
+### Deleting a person : `pdelete`
+Deletes the specified person from persons list.
 
 Format: `pdelete INDEX`
 
-* Deletes the patron at the specified `INDEX`.
-* The index refers to the index number shown in the displayed patrons list.
-* The index **must be a positive integer** 1, 2, 3, …​
+<box type="tip" seamless>
+
+**Tips:**
+- `INDEX` refers to the index number shown in the **displayed persons list**.
+- `INDEX` **must be a positive integer** 1, 2, 3, …​
+  </box>
 
 <box type="warning" seamless>
 
-**Caution**: Deleting a patron also deletes their associated bookings!
+**Caution**: Deleting a person also deletes their associated bookings!
 
 </box>
 
 Examples:
-* `list` followed by `delete 2` deletes the 2nd patron in the patrons list.
-* `find Betsy` followed by `delete 1` deletes the 1st patron in the results of the `find` command.
+* `list` followed by `delete 2` deletes the 2nd person in the persons list.
+* `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
 
 <br>
 
-### Finding patrons by name: `find`
+### Finding persons by name: `find`
 
-Finds all patrons whose names contain any of the specified **full-word** keywords (case-insensitive), and displays them as a list with index numbers.
+Finds all persons whose names contain any of the specified **full-word** keywords (case-insensitive), and displays them as a list with index numbers.
 
 Format:  
 `find KEYWORD [MORE_KEYWORDS]...`
@@ -191,7 +213,7 @@ Format:
 
 **Tips:**
 - Keyword matching is **case-insensitive** but only matches **whole words**.
-- A keyword must match a full word in the patron’s name (e.g., `alex` matches "Alex Tan" but not "Alexander").
+- A keyword must match a full word in the person’s name (e.g., `alex` matches "Alex Tan" but not "Alexander").
 - You can enter multiple keywords separated by spaces to match more people.
 
 </box>
@@ -207,16 +229,24 @@ Examples:
 
 <br>
 
-### Listing all patrons : `plist`
+### Listing all persons : `plist`
 
-Shows a list of all patrons in the patrons list.
+Shows a list of all persons in the persons list.
 
 Format: `plist`
+
+<box type="tip" seamless>
+
+**Tip:**
+- The persons list is sorted by the order in which they are added, with index 1 being the earliest added person.
+
+</box>
 
 
 ---
 ## Booking Commands
-A patron can have **zero, one or more** bookings. 
+A person can have **zero, one or more** bookings, but each booking must have **exactly one** associated person, 
+which is referenced via their phone number.
 
 <br>
 
@@ -228,8 +258,8 @@ Format: `badd d/DATE_TIME p/PHONE x/PAX [r/REMARK]`
 
 <box type="tip" seamless>
 
-**Tip:**
-- The phone number must belong to an existing patron.
+**Tips:**
+- The phone number must belong to an existing person.
 - Date and time must be in the format: `yyyy-MM-dd h:mm a`  
   (e.g., `2025-04-03 2:30 PM`).
 - `PAX` refers to your dining group size, with a maximum of 500.
@@ -262,6 +292,15 @@ Format:
 
 </box>
 
+<box type="note" seamless>
+
+**Note:** KrustyKrab allows you to edit existing bookings that are **not currently being displayed** in the bookings list.
+For example, if my most recent command was `filter p/98765432`, I can still edit a booking with `BOOKING_ID` 2 that
+belongs to a different phone number,
+even though it is not currently displayed.
+
+</box>
+
 Examples:
 * `bedit b/1 d/2025-04-01 9:00 PM x/4 r/Anniversary`
 * `bedit b/3 r/Changed to private room`
@@ -273,11 +312,25 @@ Examples:
 
 Deletes the specified booking from the bookings list.
 
-Format: `bdelete INDEX`
+Format: `bdelete BOOKING_ID`
 
-* Deletes the booking with the specified `INDEX`.
-* The index refers to the unique booking ID of the booking.
-* The index **must be a positive integer** 1, 2, 3, …​
+<box type="tip" seamless>
+
+**Tips:**
+
+- `BOOKING_ID` refers to the unique booking ID of the booking.
+- `BOOKING_ID` **must be a positive integer** 1, 2, 3, …​
+
+</box>
+
+<box type="note" seamless>
+
+**Note:** KrustyKrab allows you to delete bookings that are **not currently being displayed** in the bookings list.
+For example, if my most recent command was `filter p/98765432`, I can still delete a booking with `BOOKING_ID` 2 that
+belongs to a different phone number,
+even though it is not currently displayed.
+
+</box>
 
 Examples:
 * `bdelete 2` deletes the booking with ID 2.
@@ -291,12 +344,27 @@ Marks a booking with a new status (UPCOMING, COMPLETED, CANCELLED).
 Format:  
 `mark b/BOOKING_ID s/STATUS`
 
-* The `BOOKING_ID` is shown when you list bookings.
-* Status must be exactly one of: `UPCOMING`, `COMPLETED`, `CANCELLED`.
-* Status is case-insensitive (e.g., upcoming and Completed are valid).
+<box type="tip" seamless>
+
+**Tips:**
+
+- The `BOOKING_ID` is shown when you list bookings.
+- Status must be exactly one of: `UPCOMING`, `COMPLETED`, `CANCELLED`.
+- Status is case-insensitive (e.g., upcoming and Completed are valid).
+- If a booking is marked to a status that is the same as its current status, nothing will change.
+</box>
+
+<box type="note" seamless>
+
+**Note:** KrustyKrab allows you to mark the status of bookings that are **not currently being displayed** in the bookings list.
+For example, if my most recent command was `filter p/98765432`, I can still mark the status of a booking with `BOOKING_ID` 2 that
+belongs to a different phone number,
+even though it is not currently displayed.
+
+</box>
 
 Example:
-* `mark b/2 s/COMPLETED`
+* `mark b/2 s/COMPLETED` marks the booking with ID 2 as completed.
 
 <br>
 
@@ -311,7 +379,7 @@ Format:
 
 **Tips:**
 - At least one parameter must be provided
-- Phone number must match an existing patron
+- Phone number must match an existing person
 - Date must be in the format: `yyyy-MM-dd` (e.g., `2023-12-25`)
 - Status must be one of: `UPCOMING`, `COMPLETED`, or `CANCELLED`
 - You can combine parameters to filter bookings more precisely
@@ -319,11 +387,11 @@ Format:
 </box>
 
 Examples:
-* `filter p/98765432` - Shows all bookings made by the patron with phone number 98765432
+* `filter p/98765432` - Shows all bookings made by the person with phone number 98765432
 * `filter d/2023-12-25` - Shows all bookings on 25 December 2023
 * `filter s/COMPLETED` - Shows all bookings marked as completed
-* `filter p/98765432 d/2023-12-25` - Shows all bookings made by the patron with phone 98765432 on 25 December 2023
-* `filter p/98765432 s/UPCOMING` - Shows all upcoming bookings for the patron with phone 98765432
+* `filter p/98765432 d/2023-12-25` - Shows all bookings made by the person with phone 98765432 on 25 December 2023
+* `filter p/98765432 s/UPCOMING` - Shows all upcoming bookings for the person with phone 98765432
 
 `filter p/87438807 s/UPCOMING`
 ![filter p/87438807 s/UPCOMING](images/filter_p87438807_sUPCOMING.png)
@@ -344,32 +412,28 @@ Format:
 
 Clears all bookings marked as **Completed** or **Cancelled**.
 
-Format:  
-`clearbookings`
+Format: `clearbookings`
 
-<box type="note" seamless>
+<box type="warning" seamless style="background-color: #FFCCCC; border-color: #FF0000;">
 
-**Note:** Upcoming bookings will **not** be cleared.
+**Warning:** All Completed or Cancelled bookings will be cleared. This action is irreversible! Ensure you want to delete these bookings before proceeding.
 
 </box>
-
-Example:
-* `clearbookings`
 
 <br>
 
 ### Summarising bookings of the day: `today`
 
-Shows all bookings scheduled for today and the patrons who made those bookings.
+Shows all bookings scheduled for today and the persons who made those bookings.
 
 Format: `today`
 
-* Displays all bookings for the current date.
-* Also shows a summary count of upcoming, completed and cancelled bookings for today.
-* Shows the list of patrons who have bookings today.
+<box type="tip" seamless>
 
-Example:
-* `today` → Lists all of today's bookings and patrons who made those bookings.
+**Tips:**
+- The command also shows a summary count of upcoming, completed and cancelled bookings for today, which may be useful when preparing for the day.
+
+</box>
 
 `today`
 ![today](images/today.png)
@@ -383,11 +447,11 @@ Listed below are the currently supported general commands.
 
 ### Clearing all entries : `clearall`
 
-Clears all patron entries and booking entries.
+Clears all person entries and booking entries.
 
 <box type="warning" seamless style="background-color: #FFCCCC; border-color: #FF0000;">
 
-**Warning:** All patrons and bookings will be cleared. This action is irreversible!
+**Warning:** All persons and bookings will be cleared. This action is irreversible!
 
 </box>
 
@@ -401,7 +465,7 @@ Shows a message explaining how to access the help page.
 
 Format: `help`
 
-`help`
+`help`<br>
 ![help message](images/helpMessage.png)
 
 <br>
@@ -458,15 +522,15 @@ _Details coming soon ..._
 
 Action                | Format, Examples
 ----------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------
-**Add Patron**      | `padd n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [m/IS_MEMBER] [t/TAG]…​` <br> e.g., `padd n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend`
+**Add Person**      | `padd n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [m/IS_MEMBER] [t/TAG]…​` <br> e.g., `padd n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend`
 **Add Booking**       | `badd d/DATE_TIME p/PHONE x/PAX [r/REMARK]` <br> e.g., `badd d/2025-04-03 2:30 PM p/98765432 x/5 r/Birthday Celebration`
-**List Patron**    | `plist`
+**List Person**    | `plist`
 **List Bookings**     | `blist`<br> `blist /all`
-**Edit Patron**     | `pedit INDEX [n/NAME] [e/EMAIL] [a/ADDRESS] [m/IS_MEMBER] [t/TAG]…​` <br> e.g.,`pedit 3 a/123 Sunset Way m/true t/friend t/vip`
+**Edit Person**     | `pedit INDEX [n/NAME] [e/EMAIL] [a/ADDRESS] [m/IS_MEMBER] [t/TAG]…​` <br> e.g.,`pedit 3 a/123 Sunset Way m/true t/friend t/vip`
 **Edit Booking**      | `bedit b/BOOKING_ID [d/DATETIME] [x/PAX] [r/REMARK]` <br> e.g., `bedit b/1 d/2025-04-01 9:00 PM x/4 r/Anniversary`
-**Delete Patron**   | `pdelete INDEX` <br> e.g., `pdelete 3`
+**Delete Person**   | `pdelete INDEX` <br> e.g., `pdelete 3`
 **Delete Booking**    | `bdelete INDEX` <br> e.g., `bdelete 2`
-**Find Patron**    | `find KEYWORD [MORE_KEYWORDS]` <br> e.g., `find James Jake`
+**Find Person**    | `find KEYWORD [MORE_KEYWORDS]` <br> e.g., `find James Jake`
 **Filter Bookings**   | `filter [p/PHONE_NUMBER] [d/DATE] [s/STATUS]` <br> e.g., `filter p/98765432`, `filter d/2023-12-25`, `filter s/COMPLETED`
 **Mark Booking**      | `mark b/BOOKING_ID s/STATUS` <br> e.g., `mark b/2 s/COMPLETED`
 **Today's Bookings**  | `today`
