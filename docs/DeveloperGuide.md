@@ -125,6 +125,7 @@ The `Model` component,
 
 * stores the address book data i.e., all `Person` objects (which are contained in a `UniquePersonList` object).
 * stores the currently 'selected' `Person` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Person>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
+* stores the currently 'selected' `Booking` objects (e.g., results of a filter predicate) as a similar separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Booking>` that can be 'observed'.
 * stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
 * does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
 
@@ -163,7 +164,8 @@ The `Booking` class is a class under the Model component. It is used to represen
 * `pax` - the number of people for the booking.
 * `remark` - any remarks made by the customer.
 
-Persons and bookings have a one-to-many relationship, where a person can have multiple bookings. 
+Persons and bookings have a one-to-many relationship, where a person can have multiple bookings, but each booking only has one person attached to it as the person who made the booking. 
+
 As such:
 - The `Booking` class contains a reference to the `Person` class, which represents the person who made the booking. 
 - Persons have a `bookingIds` field that contains a list of booking IDs linked to the booking's `bookingId` field, which are unique identifiers for each booking made by the person.
@@ -338,11 +340,11 @@ _Implementation to be discussed for future revisions._
 **Target user profile**:
 
 * Restaurant staff with a significant number of bookings
-* needs to efficiently manage customer bookings, including status, timing, contact details, and past records
-* wants to personalize services by recognizing regular customers
-* prefers desktop apps for quick searching and retrieval of booking details
-* can type fast
-* is reasonably comfortable using CLI apps
+* Needs to efficiently manage customer bookings, including status, timing, contact details, and past records
+* Wants to personalize services by recognizing regular customers
+* Prefers desktop apps for quick searching and retrieval of booking details
+* Can type fast
+* Is reasonably comfortable using CLI apps
 
 **Value proposition**: 
 
@@ -356,27 +358,27 @@ _Implementation to be discussed for future revisions._
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​         | I want to …​                                                 | So that I can…​                                            |
-|----------|----------------|--------------------------------------------------------------|------------------------------------------------------------|
-| `* * *`  | restaurant staff  | add a new booking with customer details                      | keep track of upcoming reservations                        |
-| `* * *`  | restaurant staff  | delete a booking                                             | remove cancellations or incorrect entries                  |
-| `* * *`  | restaurant staff  | view a list of all upcoming bookings                         | quickly see my schedule                                    |
-| `* * *`  | restaurant staff  | mark a booking as completed                                  | keep track of which customers have visited                 |
-| `* * *`  | restaurant staff  | add notes to a customer profile                              | remember preferences like seating choices, allergies, etc. |
-| `* * *`  | restaurant staff  | search for a booking using a customer’s name or phone number | quickly find their reservation details                     |
-| `* * *`  | restaurant staff  | save a new customer’s contact information                    | quickly find their details for future bookings             |
-| `* * *`  | restaurant staff  | edit a customer’s contact details                            | update incorrect or outdated information                   |
-| `* * *`  | restaurant staff  | delete customer's contact details                            | maintain an updated list                                   |
-| `* * *`  | restaurant staff  | store data offline                                           | keep all information for future use and tracking           |
-| `* * *`  | restaurant staff  | view all upcoming bookings                                   | prepare for each day                                       |
-| `* *`    | restaurant staff  | delete all completed bookings                                | clear unnecessary backlogs                                 |
-| `* *`    | restaurant staff  | edit an existing booking                                     | update details when a customer changes their reservation   |
-| `* *`    | restaurant staff  | sort bookings by date or time                                | find what I need quickly                                   |
-| `* *`    | restaurant staff  | filter bookings by date                                      | see only the relevant reservations                         |
-| `* * `   | restaurant staff  | view a customer’s past booking history                       | provide a more personalized experience                     |
-| `* *`    | restaurant staff  | view a summary of today’s bookings on the homepage           | see important details at a glance                          |
-| `* *`    | restaurant staff  | tag members                                                  | provide them with special perks or greetings               |
-| `*`      | restaurant staff  | validate emails                                              | ensure they are in the correct input format                |
+| Priority | As a …​          | I want to …​                                                 | So that I can…​                                            |
+|----------|------------------|--------------------------------------------------------------|------------------------------------------------------------|
+| `* * *`  | restaurant staff | add a new booking with customer details                      | keep track of upcoming reservations                        |
+| `* * *`  | restaurant staff | delete a booking                                             | remove cancellations or incorrect entries                  |
+| `* * *`  | restaurant staff | view a list of all upcoming bookings                         | quickly see my schedule                                    |
+| `* * *`  | restaurant staff | mark a booking as completed                                  | keep track of which customers have visited                 |
+| `* * *`  | restaurant staff | add notes to a customer profile                              | remember preferences like seating choices, allergies, etc. |
+| `* * *`  | restaurant staff | search for a booking using a customer’s name or phone number | quickly find their reservation details                     |
+| `* * *`  | restaurant staff | save a new customer’s contact information                    | quickly find their details for future bookings             |
+| `* * *`  | restaurant staff | edit a customer’s contact details                            | update incorrect or outdated information                   |
+| `* * *`  | restaurant staff | delete customer's contact details                            | maintain an updated list                                   |
+| `* * *`  | restaurant staff | store data offline                                           | keep all information for future use and tracking           |
+| `* * *`  | restaurant staff | view all upcoming bookings                                   | prepare for each day                                       |
+| `* *`    | restaurant staff | delete all completed bookings                                | clear unnecessary backlogs                                 |
+| `* *`    | restaurant staff | edit an existing booking                                     | update details when a customer changes their reservation   |
+| `* *`    | restaurant staff | sort bookings by date or time                                | find what I need quickly                                   |
+| `* *`    | restaurant staff | filter bookings by date                                      | see only the relevant reservations                         |
+| `* * `   | restaurant staff | view a customer’s past booking history                       | provide a more personalized experience                     |
+| `* *`    | restaurant staff | view a summary of today’s bookings on the homepage           | see important details at a glance                          |
+| `* *`    | restaurant staff | tag members                                                  | provide them with special perks or greetings               |
+| `*`      | restaurant staff | validate emails                                              | ensure they are in the correct input format                |
 
 ### Use cases
 
@@ -562,7 +564,6 @@ Use case ends.
 - **1a.** User provides the `/all` flag.
     - 1a1. KrustyKrab displays all bookings, including completed and cancelled ones.
     - 1a2. Use case ends.
-
 - **1b.** There are no bookings with status "UPCOMING".
     - 1b1. KrustyKrab displays: "There are no upcoming bookings."
     - 1b2. Use case ends.
@@ -668,7 +669,8 @@ Use case ends.
 --------------------------------------------------------------------------------------------------------------------
 ## **Appendix: Effort**
 
-**Team size:**: 5
+**Team size:** 5
+
 **Difficulty level:**
 Our project was significantly more complex compared to AB3. We introduced various new commands to support additional functionalities. The `Person` objects now include more fields, with certain fields ('BookingIds') requiring syncing to the `Booking` objects. The UI has also become more complicated, with the introduction of two split panes that reflect `Person` and `Booking` data simultaneously. 
 
