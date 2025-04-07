@@ -21,7 +21,7 @@ public class AddPersonCommand extends Command {
 
     public static final String COMMAND_WORD = "padd";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a person to the person list. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a person to the person list.\n"
             + "Parameters: "
             + PREFIX_NAME + "NAME "
             + PREFIX_PHONE + "PHONE "
