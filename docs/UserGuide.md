@@ -409,7 +409,7 @@ even though it is not currently displayed.
 Example:
 * `mark b/2 s/COMPLETED` marks the booking with ID 2 as completed.
 
-mark b/1 s/COMPLETED
+`mark b/1 s/COMPLETED`
 ![mark_showcase](images/markshowcase.png)
 
 <br>
