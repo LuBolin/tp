@@ -39,12 +39,16 @@ as KrustyKrab allows you to save a person's information without them necessarily
 6. [FAQ](#faq)
 7. [Known Issues](#known-issues)
 8. [Command Summary](#command-summary)
+9. [Glossary](#glossary)
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Quick start
+## 1. Quick start
 
 1. Ensure you have Java `17` or above installed on your computer.<br>
+   Check if Java is already installed in the command terminal by typing: `java -version` <br>
+   If the version shown is Java 17 or higher, you're good to go.<br>
+   If not, download and install java 17 from [Oracle](https://www.oracle.com/java/technologies/downloads/#java17).<br>
    **Mac users:** Ensure you have the precise JDK version prescribed [here](https://se-education.org/guides/tutorials/javaInstallationMac.html).
 
 2. Download the latest `krustykrab.jar` file from [here](https://github.com/AY2425S2-CS2103T-T08-2/tp/releases).
@@ -81,7 +85,7 @@ Some example commands you can try:
 <br>
 --------------------------------------------------------------------------------------------------------------------
 
-## Command Overview
+## 2. Command Overview
 
 <box type="tip" seamless>
 
@@ -124,7 +128,7 @@ Each command consists of a **command word**, and zero or more **parameters**.
 </box>
 
 --------------------------------------------------------------------------------------------------------------------
-## Person Commands
+## 3. Person Commands
 A person has a **name, phone number, email, address, membership status** and optionally, **tags**.
 
 <box type="note" seamless>
@@ -138,7 +142,7 @@ KrustyKrab does not allow more than 1 person to have the same phone number.
 
 <br>
 
-### Adding a person: `padd`
+### 3.1. Adding a person: `padd`
 
 Adds a person to the persons list.
 
@@ -157,9 +161,12 @@ Examples:
 * `padd n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 m/true`
 * `padd n/Betsy Crowe t/seafoodAllergy e/betsycrowe@example.com a/Cotton Candy Land p/1234567`
 
+`padd n/Alex Yeoh p/87438807 e/alexyeoh@example.com a/Blk 30 Geylang Street 29, #06-40 t/friends`
+![padd_showcase](images/paddshowcase.png)
+
 <br>
 
-### Editing a person: `pedit`
+### 3.2. Editing a person: `pedit`
 
 Edits the details of the person identified by the index number in the displayed persons list.  
 Existing values will be overwritten by the input values.
@@ -184,9 +191,12 @@ Examples:
 * `pedit 3 a/123 Sunset Way m/true t/friend t/vip`
 * `pedit 2 t/` (clears all tags)
 
+`edit 1 a/123 Sunset Way m/True t/vip`
+![pedit_showcase](images/peditshowcase.png)
+
 <br>
 
-### Deleting a person : `pdelete`
+### 3.3. Deleting a person : `pdelete`
 Deletes the specified person from persons list.
 
 Format: `pdelete INDEX`
@@ -209,9 +219,12 @@ Examples:
 * `list` followed by `pdelete 2` deletes the 2nd person in the persons list.
 * `find Betsy` followed by `pdelete 1` deletes the 1st person in the results of the `find` command.
 
+`pdelete 1`
+![pdelete_showcase](images/pdeleteshowcase.png)
+
 <br>
 
-### Finding persons by name: `find`
+### 3.4. Finding persons by name: `find`
 
 Finds all persons whose names contain any of the specified **full-word** keywords (case-insensitive), and displays them as a list with index numbers.
 
@@ -234,11 +247,11 @@ Examples:
 * `find alex david` returns `Alex Yeoh`, `David Li`
 
 `find alex david`
-![find alex david](images/findAlexDavidResult.png)
+![find_showcase](images/findshowcase.png)
 
 <br>
 
-### Listing all persons : `plist`
+### 3.5. Listing all persons : `plist`
 
 Shows a list of all persons in the persons list.
 
@@ -251,16 +264,19 @@ Format: `plist`
 
 </box>
 
+`plist`
+![plist_showcase](images/plistshowcase.png)
+
 
 ---
-## Booking Commands
+## 4. Booking Commands
 A person can have **zero, one or more** bookings, but each booking must have **exactly one** associated person, 
 which is referenced via their phone number.
 
 
 <br>
 
-### Adding a booking: `badd`
+### 4.1. Adding a booking: `badd`
 
 Adds a booking to the bookings list.
 
@@ -283,7 +299,16 @@ Examples:
 
 <br>
 
-### Editing a booking: `bedit`
+<box type="warning" seamless>
+
+**Caution**: It is possible to create a booking with a date that has already passed, but a warning will be generated to notify the user.
+
+</box>
+
+`badd d/2021-10-31 3:00 PM p/87438807 x/5 r/Birthday Celebration`
+![badd_showcase](images/baddshowcase.png)
+
+### 4.2. Editing a booking: `bedit`
 
 Edits the details of the booking identified by the booking ID.  
 Existing values will be overwritten by the input values.
@@ -316,9 +341,12 @@ Examples:
 * `bedit b/3 r/Changed to private room`
 * `bedit b/2 d/2025-05-12 12:00 PM`
 
+`bedit b/5 x/7 r/Dinner`
+![bedit_showcase](images/beditshowcase.png)
+
 <br>
 
-### Deleting a booking : `bdelete`
+### 4.3. Deleting a booking : `bdelete`
 
 Deletes the specified booking from the bookings list.
 
@@ -346,9 +374,12 @@ even though it is not currently displayed.
 Examples:
 * `bdelete 2` deletes the booking with ID 2.
 
+`bdelete 1`
+![bdelete_showcase](images/bdeleteshowcase.png)
+
 <br>
 
-### Marking a booking status: `mark`
+### 4.4. Marking a booking status: `mark`
 
 Marks a booking with a new status (UPCOMING, COMPLETED, CANCELLED).
 
@@ -377,9 +408,12 @@ even though it is not currently displayed.
 Example:
 * `mark b/2 s/COMPLETED` marks the booking with ID 2 as completed.
 
+mark b/1 s/COMPLETED
+![mark_showcase](images/markshowcase.png)
+
 <br>
 
-### Filtering bookings: `filter`
+### 4.5. Filtering bookings: `filter`
 
 Filters and displays bookings based on phone number, date, status, or any combination.
 
@@ -404,12 +438,12 @@ Examples:
 * `filter p/98765432 d/2023-12-25` - Shows all bookings made by the person with phone 98765432 on 25 December 2023
 * `filter p/98765432 s/UPCOMING` - Shows all upcoming bookings for the person with phone 98765432
 
-`filter p/87438807 s/UPCOMING`
-![filter p/87438807 s/UPCOMING](images/filter_p87438807_sUPCOMING.png)
+`filter s/UPCOMING`
+![filter_showcase](images/filtershowcase.png)
 
 <br>
 
-### Listing bookings: `blist`
+### 4.6. Listing bookings: `blist`
 
 Shows all bookings in the bookings list.
 
@@ -417,9 +451,12 @@ Format:
 * `blist` : Lists only upcoming bookings.
 * `blist /all` : Lists **all** bookings (including completed/cancelled).
 
+`blist`
+![blist_showcase](images/blistshowcase.png)
+
 <br>
 
-### Summarising bookings of the day: `today`
+### 4.7. Summarising bookings of the day: `today`
 
 Shows all bookings scheduled for today and the persons who made those bookings.
 
@@ -433,11 +470,11 @@ Example:
 * `today` → Lists all of today's bookings and persons who made those bookings.
 
 `today`
-![today](images/today.png)
+![today_showcase](images/todayshowcase.png)
 
 <br>
 
-### Clearing completed and cancelled bookings: `clearbookings`
+### 4.8. Clearing completed and cancelled bookings: `clearbookings`
 
 Clears all bookings marked as **Completed** or **Cancelled**.
 
@@ -449,32 +486,15 @@ Format: `clearbookings`
 
 </box>
 
-<br>
-
-### Summarising bookings of the day: `today`
-
-Shows all bookings scheduled for today and the persons who made those bookings.
-
-Format: `today`
-
-<box type="tip" seamless>
-
-**Tips:**
-- The command also shows a summary count of upcoming, completed and cancelled bookings for today, which may be useful when preparing for the day.
-
-</box>
-
-`today`
-![today](images/today.png)
-
-
+`clearbookings`
+![clearbookings_showcase](images/clearbookingshowcase.png)
 ---
-## General Commands
+## 5. General Commands
 Listed below are the currently supported general commands.
 
 <br>
 
-### Clearing all entries : `clearall`
+### 5.1. Clearing all entries : `clearall`
 
 Clears all person entries and booking entries.
 
@@ -486,9 +506,12 @@ Clears all person entries and booking entries.
 
 Format: `clearall`
 
+`clearall`
+![clearall_showcase](images/clearallshowcase.png)
+
 <br>
 
-### Viewing help : `help`
+### 5.2. Viewing help : `help`
 
 Shows a message explaining how to access the help page.
 
@@ -499,7 +522,7 @@ Format: `help`
 
 <br>
 
-### Exiting the program : `exit`
+### 5.3. Exiting the program : `exit`
 
 Exits the program.
 
@@ -534,20 +557,20 @@ _Details coming soon ..._
 
 --------------------------------------------------------------------------------------------------------------------
 
-## FAQ
+## 6. FAQ
 
 **Q**: How do I transfer my data to another Computer?<br>
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous KrustyKrab home folder.
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Known issues
+## 7. Known issues
 
 1. **When using multiple screens**, if you move the application to a secondary screen, and later switch to using only the primary screen, the GUI will open off-screen. The remedy is to delete the `preferences.json` file created by the application before running the application again.
 2. **If you minimize the Help Window** and then run the `help` command (or use the `Help` menu, or the keyboard shortcut `F1`) again, the original Help Window will remain minimized, and no new Help Window will appear. The remedy is to manually restore the minimized Help Window.
 
 --------------------------------------------------------------------------------------------------------------------
-## Command summary
+## 8. Command summary
 
 Action                | Format, Examples
 ----------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -567,3 +590,15 @@ Action                | Format, Examples
 **Clear All**         | `clearall`
 **Help**              | `help`
 **Exit**              | `exit`
+
+--------------------------------------------------------------------------------------------------------------------
+### 9. Glossary
+
+* **Java**: A popular programming language used to build platform-independent applications. KrustyKrab requires Java 17 or above to run.
+* **Command Terminal**: A text-based interface where users can type and execute commands directly on their operating system (e.g., Command Prompt on Windows, Terminal on macOS/Linux).
+* **Oracle**: A software company that maintains the official Java Development Kit (JDK) and provides downloadable versions of Java for developers.
+* **JDK (Java Development Kit)**: A software development environment that provides tools necessary to write, compile, and run Java applications. It includes the Java Runtime Environment (JRE), compiler, and other development tools.
+* **cd**: Stands for "change directory". A command used in the terminal to navigate to a specific folder on your computer. Example: `cd C:\Users\MyFolder`.
+* **Command**: An instruction typed into the terminal or KrustyKrab’s command box to perform a specific action. For example, `padd` adds a new person.
+* **Parameter**: A specific part of a command that provides input values. For instance, in `padd n/John Doe`, `n/John Doe` is a parameter that specifies the name.
+* **JSON (JavaScript Object Notation)**: A lightweight data format used to store KrustyKrab’s data (e.g., persons and bookings). It is saved automatically in a `.json` file and can be edited manually if needed.
