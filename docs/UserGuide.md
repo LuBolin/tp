@@ -177,8 +177,8 @@ Format: `pdelete INDEX`
 </box>
 
 Examples:
-* `list` followed by `delete 2` deletes the 2nd person in the persons list.
-* `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
+* `list` followed by `pdelete 2` deletes the 2nd person in the persons list.
+* `find Betsy` followed by `pdelete 1` deletes the 1st person in the results of the `find` command.
 
 <br>
 
