@@ -6,15 +6,28 @@
 
 # User Guide
 
-**KrustyKrab** is a lightweight and responsive desktop app for **restaurant staff** to quickly manage person information and bookings.
 
-KrustyKrab allows you to:
+**KrustyKrab** is a lightweight and responsive desktop app for **restaurant staff** to quickly manage customer 
+information and bookings. It is designed to be simple yet efficient.
 
-- Keep track of your persons' **contacts** and **bookings**.
-- Easily view all upcoming bookings at a glance through our **bookings view**.
-- **Add, edit**, and **cancel** bookings with just a few keystrokes.
 
-KrustyKrab is optimized for use via keyboard commands while still being visually pleasing and user-friendly. If you type fast, you’ll get your booking tasks done quicker than with any mouse-based system.
+At a glance, KrustyKrab allows you to:
+
+- Easily manage customer information and their details.
+- Efficiently manage and keep track of your customers' bookings and its status or details.
+- Quickly view or filter relevant bookings or customers through the simple user interface.
+
+
+
+KrustyKrab is optimized for use via keyboard commands without compromising aesthetics or user-friendliness. 
+If you type fast, you’ll get your booking tasks done much quicker than with any mouse-based system.
+
+<box type="info" seamless>
+
+**IMPORTANT:** From here onwards, customers are referred to as **persons** in this user guide. This is for standardization purposes, 
+as KrustyKrab allows you to save a person's information without them necessarily having a booking.
+
+</box>
 
 ---
 ## Table of Contents
@@ -36,14 +49,24 @@ KrustyKrab is optimized for use via keyboard commands while still being visually
 
 2. Download the latest `krustykrab.jar` file from [here](https://github.com/AY2425S2-CS2103T-T08-2/tp/releases).
 
-3. Copy the file to the folder you want to use as the _home folder_ for KrustyKrab.
+3. Copy the file to the folder you want to use as the home folder for KrustyKrab. (You may use any folder you like, 
+but a **blank folder** is recommended.)
 
-4. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar krustykrab.jar` command to run the application.  
-**Example**: `cd C:\Users\JasonLim\KrustyHomeFolder\`<br><br>
-A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
-![Ui](images/StartingUI.png)
+4. Open a command terminal and navigate into the folder in which you put the jar file using the `cd` (change directory) command. 
+   For example, if you put the jar file in `C:\Users\JasonLim\KrustyHomeFolder\`, type the following command in the terminal and press _Enter_:
+   ```bash
+   cd C:\Users\JasonLim\KrustyHomeFolder\
+   ```
 
-5. Type a command in the command box and press _Enter_ to execute it.  
+5. Type the following command into the command terminal and press _Enter_ to run the application.
+   ```bash
+   java -jar krustykrab.jar
+   ```
+   A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
+   ![Ui](images/StartingUI.png)
+
+
+6. Type a command in the command box and press _Enter_ to execute it.  
 **Example:** Typing **`help`** and pressing _Enter_ will open the help window.
 
 <br>
@@ -62,7 +85,7 @@ Some example commands you can try:
 
 <box type="tip" seamless>
 
-**Tip:** Refer to the [Command Summary](#command-summary) for a table containing the full list of commands.
+**Tips:** Refer to the [Command Summary](#command-summary) for a table containing the full list of commands.
 
 </box>
 
@@ -108,7 +131,8 @@ A person has a **name, phone number, email, address, membership status** and opt
 
 **Note:** 
 
-Persons with the same phone number will be counted as **duplicate** persons.
+KrustyKrab does not allow more than 1 person to have the same phone number.
+
 
 </box>
 
@@ -146,10 +170,11 @@ Format:
 <box type="tip" seamless>
 
 **Tips:**
-- `INDEX` refers to the position of the person in the **last shown person list** (must be a positive integer).
+- `INDEX` refers to the position of the person in the **displayed person list** (must be a positive integer).
 - At least one field must be provided.
 - You **cannot edit the phone number** of a person.
-- `IS_MEMBER` should be `true`/`false`,`yes`/`no` or `1`/`0` (Case Insensitive).
+- `IS_MEMBER` should be `true`/`false`, `1`/`0` or `yes`/`no` (Case Insensitive).
+
 - Editing tags will replace all existing tags with the new set. To clear all tags, use `t/` without any value.
 
 </box>
@@ -166,9 +191,13 @@ Deletes the specified person from persons list.
 
 Format: `pdelete INDEX`
 
-* Deletes the person at the specified `INDEX`.
-* The index refers to the index number shown in the displayed persons list.
-* The index **must be a positive integer** 1, 2, 3, …​
+<box type="tip" seamless>
+
+**Tips:**
+- `INDEX` refers to the index number shown in the **displayed persons list**.
+- `INDEX` **must be a positive integer** 1, 2, 3, …​
+  </box>
+
 
 <box type="warning" seamless>
 
@@ -215,10 +244,19 @@ Shows a list of all persons in the persons list.
 
 Format: `plist`
 
-<br>
+<box type="tip" seamless>
+
+**Tip:**
+- The persons list is sorted by the order in which they are added, with index 1 being the earliest added person.
+
+</box>
+
+
 ---
 ## Booking Commands
-A person can have **zero, one or more** bookings. 
+A person can have **zero, one or more** bookings, but each booking must have **exactly one** associated person, 
+which is referenced via their phone number.
+
 
 <br>
 
@@ -230,7 +268,7 @@ Format: `badd d/DATE_TIME p/PHONE x/PAX [r/REMARK]`
 
 <box type="tip" seamless>
 
-**Tip:**
+**Tips:**
 - The phone number must belong to an existing person.
 - Date and time must be in the format: `yyyy-MM-dd h:mm a`  
   (e.g., `2025-04-03 2:30 PM`).
@@ -264,6 +302,15 @@ Format:
 
 </box>
 
+<box type="note" seamless>
+
+**Note:** KrustyKrab allows you to edit existing bookings that are **not currently being displayed** in the bookings list.
+For example, if my most recent command was `filter p/98765432`, I can still edit a booking with `BOOKING_ID` 2 that
+belongs to a different phone number,
+even though it is not currently displayed.
+
+</box>
+
 Examples:
 * `bedit b/1 d/2025-04-01 9:00 PM x/4 r/Anniversary`
 * `bedit b/3 r/Changed to private room`
@@ -277,9 +324,24 @@ Deletes the specified booking from the bookings list.
 
 Format: `bdelete BOOKING_ID`
 
-* Deletes the booking with the specified `BOOKING_ID`.
-* The index refers to the unique booking ID of the booking.
-* The index **must be a positive integer** 1, 2, 3, …​
+<box type="tip" seamless>
+
+**Tips:**
+
+- `BOOKING_ID` refers to the unique booking ID of the booking.
+- `BOOKING_ID` **must be a positive integer** 1, 2, 3, …​
+
+</box>
+
+<box type="note" seamless>
+
+**Note:** KrustyKrab allows you to delete bookings that are **not currently being displayed** in the bookings list.
+For example, if my most recent command was `filter p/98765432`, I can still delete a booking with `BOOKING_ID` 2 that
+belongs to a different phone number,
+even though it is not currently displayed.
+
+</box>
+
 
 Examples:
 * `bdelete 2` deletes the booking with ID 2.
@@ -293,12 +355,27 @@ Marks a booking with a new status (UPCOMING, COMPLETED, CANCELLED).
 Format:  
 `mark b/BOOKING_ID s/STATUS`
 
-* The `BOOKING_ID` is shown when you list bookings.
-* Status must be exactly one of: `UPCOMING`, `COMPLETED`, `CANCELLED`.
-* Status is case-insensitive (e.g., upcoming and Completed are valid).
+<box type="tip" seamless>
+
+**Tips:**
+
+- The `BOOKING_ID` is shown when you list bookings.
+- Status must be exactly one of: `UPCOMING`, `COMPLETED`, `CANCELLED`.
+- Status is case-insensitive (e.g., upcoming and Completed are valid).
+- If a booking is marked to a status that is the same as its current status, nothing will change.
+</box>
+
+<box type="note" seamless>
+
+**Note:** KrustyKrab allows you to mark the status of bookings that are **not currently being displayed** in the bookings list.
+For example, if my most recent command was `filter p/98765432`, I can still mark the status of a booking with `BOOKING_ID` 2 that
+belongs to a different phone number,
+even though it is not currently displayed.
+
+</box>
 
 Example:
-* `mark b/2 s/COMPLETED`
+* `mark b/2 s/COMPLETED` marks the booking with ID 2 as completed.
 
 <br>
 
@@ -364,19 +441,33 @@ Example:
 
 Clears all bookings marked as **Completed** or **Cancelled**.
 
-Format:  
-`clearbookings`
+Format: `clearbookings`
 
-<box type="note" seamless>
+<box type="warning" seamless style="background-color: #FFCCCC; border-color: #FF0000;">
 
-**Note:** Upcoming bookings will **not** be cleared.
+**Warning:** All Completed or Cancelled bookings will be cleared. This action is irreversible! Ensure you want to delete these bookings before proceeding.
 
 </box>
 
-Example:
-* `clearbookings`
-
 <br>
+
+### Summarising bookings of the day: `today`
+
+Shows all bookings scheduled for today and the persons who made those bookings.
+
+Format: `today`
+
+<box type="tip" seamless>
+
+**Tips:**
+- The command also shows a summary count of upcoming, completed and cancelled bookings for today, which may be useful when preparing for the day.
+
+</box>
+
+`today`
+![today](images/today.png)
+
+
 ---
 ## General Commands
 Listed below are the currently supported general commands.
@@ -403,7 +494,7 @@ Shows a message explaining how to access the help page.
 
 Format: `help`
 
-`help`
+`help`<br>
 ![help message](images/helpMessage.png)
 
 <br>
