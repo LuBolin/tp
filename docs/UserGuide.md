@@ -71,7 +71,7 @@ but a **blank folder** is recommended.)
 
 
 6. Type a command in the command box and press _Enter_ to execute it.  
-**Example:** Typing **`help`** and pressing _Enter_ will open the help window.
+**Example:** Typing `help` and pressing _Enter_ will open the help window.
 
 <br>
 
@@ -90,7 +90,7 @@ Some example commands you can try:
 
 <box type="tip" seamless>
 
-**Tips:** Refer to the [Command Summary](#command-summary) for a table containing the full list of commands.
+**Tips:** Refer to the [Command Summary](#8-command-summary) for a table containing the full list of commands.
 
 </box>
 
@@ -122,7 +122,7 @@ Each command consists of a **command word**, and zero or more **parameters**.
 
 </box>
 
-<box type="warning" seamless>
+<box type="warning" seamless style="background-color: #FFFFCC; border-color: #FFC000;">
 
 **Caution:** If you are using a PDF version of this document, be careful when copying and pasting commands that span multiple lines as space characters surrounding line-breaks may be omitted when copied over to the application.
 
@@ -192,7 +192,7 @@ Examples:
 * `pedit 3 a/123 Sunset Way m/true t/friend t/vip`
 * `pedit 2 t/` (clears all tags)
 
-`edit 1 a/123 Sunset Way m/True t/vip`
+`pedit 1 a/123 Sunset Way m/True t/vip`
 ![pedit_showcase](images/peditshowcase.png)
 
 <br>
@@ -210,7 +210,7 @@ Format: `pdelete INDEX`
   </box>
 
 
-<box type="warning" seamless>
+<box type="warning" seamless style="background-color: #FFFFCC; border-color: #FFC000;">
 
 **Caution**: Deleting a person also deletes their associated bookings!
 
@@ -300,7 +300,7 @@ Examples:
 
 <br>
 
-<box type="warning" seamless>
+<box type="warning" seamless style="background-color: #FFFFCC; border-color: #FFC000;">
 
 **Caution**: It is possible to create a booking with a date that has already passed, but a warning will be generated to notify the user.
 
@@ -543,7 +543,7 @@ KrustyKrab data are saved in the hard disk automatically after any command that 
 
 KrustyKrab data are saved automatically as a JSON file `[JAR file location]/data/addressbook.json`. Advanced users are welcome to update data directly by editing that data file.
 
-<box type="warning" seamless>
+<box type="warning" seamless style="background-color: #FFFFCC; border-color: #FFC000;">
 
 **Caution:**
 If your changes to the data file makes its format invalid, KrustyKrab will discard all data and start with an empty data file at the next run.  Hence, it is recommended to take a backup of the file before editing it.<br>
