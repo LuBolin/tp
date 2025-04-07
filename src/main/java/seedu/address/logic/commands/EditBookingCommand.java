@@ -70,7 +70,7 @@ public class EditBookingCommand extends Command {
         bookingToEdit.updateFields(fieldsToEdit);
         Person bookingMaker = bookingToEdit.getBookingPerson();
 
-        model.updateFilteredBookingList(PREDICATE_SHOW_UPCOMING_BOOKINGS);
+        model.updateFilteredBookingList(model.getCurrentBookingPredicate());
 
         // Update the filtered person list to show the new booking
         model.setPerson(bookingMaker, bookingMaker);
