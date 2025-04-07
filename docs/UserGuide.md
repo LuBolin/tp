@@ -83,6 +83,7 @@ Some example commands you can try:
    * `exit` : Exits the app.
 
 <br>
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## 2. Command Overview
@@ -488,6 +489,7 @@ Format: `clearbookings`
 
 `clearbookings`
 ![clearbookings_showcase](images/clearbookingshowcase.png)
+
 ---
 ## 5. General Commands
 Listed below are the currently supported general commands.
