@@ -122,7 +122,7 @@ Each command consists of a **command word**, and zero or more **parameters**.
 
 </box>
 
-<box type="warning" seamless style="background-color: #FFFFCC; border-color: #FFC000;">
+<box type="warning" seamless style="background-color: #FFF9E5; border-color: #FFC000;">
 
 **Caution:** If you are using a PDF version of this document, be careful when copying and pasting commands that span multiple lines as space characters surrounding line-breaks may be omitted when copied over to the application.
 
@@ -154,7 +154,7 @@ Format: `padd n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [m/IS_MEMBER] [t/TAG]…�
 **Tips:**
 - A person's name must contain only alphanumeric characters.
 - A person's default membership status is false unless you set it to true.
-- A person can have any number of tags (including 0)
+- A person can have any number of tags (including 0).
 
 </box>
 
@@ -210,9 +210,9 @@ Format: `pdelete INDEX`
   </box>
 
 
-<box type="warning" seamless style="background-color: #FFFFCC; border-color: #FFC000;">
+<box type="warning" seamless style="background-color: #FFF9E5; border-color: #FFC000;">
 
-**Caution**: Deleting a person also deletes their associated bookings!
+**Caution:** Deleting a person also deletes their associated bookings!
 
 </box>
 
@@ -300,9 +300,9 @@ Examples:
 
 <br>
 
-<box type="warning" seamless style="background-color: #FFFFCC; border-color: #FFC000;">
+<box type="warning" seamless style="background-color: #FFF9E5; border-color: #FFC000;">
 
-**Caution**: It is possible to create a booking with a date that has already passed, but a warning will be generated to notify the user.
+**Caution:** It is possible to create a booking with a date that has already passed, but a warning will be generated to notify the user.
 
 </box>
 
@@ -322,7 +322,7 @@ Format:
 **Tips:**
 - `BOOKING_ID` refers to the ID assigned to the booking (viewable using `blist`).
 - Date and time must follow the format: `yyyy-MM-dd h:mm a`  
-  (e.g., `2025-04-01 9:00 PM`)
+  (e.g., `2025-04-01 9:00 PM`).
 - You must provide at least one field to edit.
 - A warning will be shown if you edit the booking to a past date/time.
 
@@ -331,7 +331,7 @@ Format:
 <box type="note" seamless>
 
 **Note:** KrustyKrab allows you to edit existing bookings that are **not currently being displayed** in the bookings list.
-For example, if my most recent command was `filter p/98765432`, I can still edit a booking with `BOOKING_ID` 2 that
+For example, if your most recent command was `filter p/98765432`, you can still edit a booking with `BOOKING_ID` '_2_' that
 belongs to a different phone number,
 even though it is not currently displayed.
 
@@ -358,7 +358,7 @@ Format: `bdelete BOOKING_ID`
 **Tips:**
 
 - `BOOKING_ID` refers to the unique booking ID of the booking.
-- `BOOKING_ID` **must be a positive integer** 1, 2, 3, …​
+- `BOOKING_ID` **must be a positive integer** e.g. 1, 2, 3, …​
 
 </box>
 
@@ -416,7 +416,7 @@ Example:
 
 ### 4.5. Filtering bookings: `filter`
 
-Filters and displays bookings based on phone number, date, status, or any combination.
+Filters and displays bookings based on phone number, date, status, or any combination of those parameters.
 
 Format:  
 `filter [p/PHONE_NUMBER] [d/DATE] [s/STATUS]`
@@ -424,11 +424,12 @@ Format:
 <box type="tip" seamless>
 
 **Tips:**
-- At least one parameter must be provided
-- Phone number must match an existing person
-- Date must be in the format: `yyyy-MM-dd` (e.g., `2023-12-25`)
-- Status must be one of: `UPCOMING`, `COMPLETED`, or `CANCELLED`
-- You can combine parameters to filter bookings more precisely
+- At least one parameter must be provided.
+- Phone number must match an existing person.
+- Date must be in the format: `yyyy-MM-dd` (e.g., `2023-12-25`).
+- Status must be one of: `UPCOMING`, `COMPLETED`, or `CANCELLED`.
+- You can combine different parameters to filter bookings more precisely.
+- Only one of each parameter can be included in the command.
 
 </box>
 
@@ -450,7 +451,7 @@ Shows all bookings in the bookings list.
 
 Format:
 * `blist` : Lists only upcoming bookings.
-* `blist /all` : Lists **all** bookings (including completed/cancelled).
+* `blist /all` : Lists **all** bookings (including bookings with status completed/cancelled).
 
 `blist`
 ![blist_showcase](images/blistshowcase.png)
@@ -543,7 +544,7 @@ KrustyKrab data are saved in the hard disk automatically after any command that 
 
 KrustyKrab data are saved automatically as a JSON file `[JAR file location]/data/addressbook.json`. Advanced users are welcome to update data directly by editing that data file.
 
-<box type="warning" seamless style="background-color: #FFFFCC; border-color: #FFC000;">
+<box type="warning" seamless style="background-color: #FFF9E5; border-color: #FFC000;">
 
 **Caution:**
 If your changes to the data file makes its format invalid, KrustyKrab will discard all data and start with an empty data file at the next run.  Hence, it is recommended to take a backup of the file before editing it.<br>
@@ -600,7 +601,7 @@ Action                | Format, Examples
 * **Command Terminal**: A text-based interface where users can type and execute commands directly on their operating system (e.g., Command Prompt on Windows, Terminal on macOS/Linux).
 * **Oracle**: A software company that maintains the official Java Development Kit (JDK) and provides downloadable versions of Java for developers.
 * **JDK (Java Development Kit)**: A software development environment that provides tools necessary to write, compile, and run Java applications. It includes the Java Runtime Environment (JRE), compiler, and other development tools.
-* **cd**: Stands for "change directory". A command used in the terminal to navigate to a specific folder on your computer. Example: `cd C:\Users\MyFolder`.
+* **cd**: Stands for "change directory". A command used in the terminal to navigate to a specific folder on your computer. e.g. `cd C:\Users\MyFolder`.
 * **Command**: An instruction typed into the terminal or KrustyKrab’s command box to perform a specific action. For example, `padd` adds a new person.
 * **Parameter**: A specific part of a command that provides input values. For instance, in `padd n/John Doe`, `n/John Doe` is a parameter that specifies the name.
 * **JSON (JavaScript Object Notation)**: A lightweight data format used to store KrustyKrab’s data (e.g., persons and bookings). It is saved automatically in a `.json` file and can be edited manually if needed.
