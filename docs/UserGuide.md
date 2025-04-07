@@ -31,7 +31,7 @@ KrustyKrab is optimized for use via keyboard commands while still being visually
 
 ## Quick start
 
-1. Ensure you have Java `17` or above installed in your computer.<br>
+1. Ensure you have Java `17` or above installed on your computer.<br>
    **Mac users:** Ensure you have the precise JDK version prescribed [here](https://se-education.org/guides/tutorials/javaInstallationMac.html).
 
 2. Download the latest `krustykrab.jar` file from [here](https://github.com/AY2425S2-CS2103T-T08-2/tp/releases).
@@ -41,7 +41,7 @@ KrustyKrab is optimized for use via keyboard commands while still being visually
 4. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar krustykrab.jar` command to run the application.  
 **Example**: `cd C:\Users\JasonLim\KrustyHomeFolder\`<br><br>
 A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
-![Ui](images/Ui.png)
+![Ui](images/StartingUI.png)
 
 5. Type a command in the command box and press _Enter_ to execute it.  
 **Example:** Typing **`help`** and pressing _Enter_ will open the help window.
@@ -55,6 +55,7 @@ Some example commands you can try:
    * `badd d/2021-10-01 3:00 PM p/98765432 x/5` : Adds a booking to the person with phone number 98765432.
    * `exit` : Exits the app.
 
+<br>
 --------------------------------------------------------------------------------------------------------------------
 
 ## Command Overview
@@ -214,7 +215,7 @@ Shows a list of all persons in the persons list.
 
 Format: `plist`
 
-
+<br>
 ---
 ## Booking Commands
 A person can have **zero, one or more** bookings. 
@@ -341,6 +342,24 @@ Format:
 
 <br>
 
+### Summarising bookings of the day: `today`
+
+Shows all bookings scheduled for today and the persons who made those bookings.
+
+Format: `today`
+
+* Displays all bookings for the current date.
+* Also shows a summary count of upcoming, completed and cancelled bookings for today.
+* Shows the list of persons who have bookings today.
+
+Example:
+* `today` → Lists all of today's bookings and persons who made those bookings.
+
+`today`
+![today](images/today.png)
+
+<br>
+
 ### Clearing completed and cancelled bookings: `clearbookings`
 
 Clears all bookings marked as **Completed** or **Cancelled**.
@@ -358,24 +377,6 @@ Example:
 * `clearbookings`
 
 <br>
-
-### Summarising bookings of the day: `today`
-
-Shows all bookings scheduled for today and the persons who made those bookings.
-
-Format: `today`
-
-* Displays all bookings for the current date.
-* Also shows a summary count of upcoming, completed and cancelled bookings for today.
-* Shows the list of persons who have bookings today.
-
-Example:
-* `today` → Lists all of today's bookings and persons who made those bookings.
-
-`today`
-![today](images/today.png)
-
-
 ---
 ## General Commands
 Listed below are the currently supported general commands.
@@ -393,20 +394,6 @@ Clears all person entries and booking entries.
 </box>
 
 Format: `clearall`
-
-<br>
-
-## Clearing all completed and cancelled bookings : `clearbookings`
-
-Clear all bookings which have been marked as `COMPLETED` and `CANCELLED`.
-
-<box type="warning" seamless style="background-color: #FFCCCC; border-color: #FF0000;">
-
-**Warning:** All bookings that have been marked as `COMPLETED` and `CANCELLED` will be cleared. This action is irreversible!
-
-</box>
-
-Format: `clearbookings`
 
 <br>
 
@@ -485,7 +472,7 @@ Action                | Format, Examples
 **Filter Bookings**   | `filter [p/PHONE_NUMBER] [d/DATE] [s/STATUS]` <br> e.g., `filter p/98765432`, `filter d/2023-12-25`, `filter s/COMPLETED`
 **List Bookings**     | `blist`<br> `blist /all`
 **Today's Bookings**  | `today`
-**Clear All**         | `clearall`
 **Clear Bookings**    | `clearbookings`
+**Clear All**         | `clearall`
 **Help**              | `help`
 **Exit**              | `exit`
