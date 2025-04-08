@@ -30,7 +30,7 @@
 * [User Guide]({{ baseUrl }}/UserGuide.html) :expanded:
   * [Quick Start]({{ baseUrl }}/UserGuide.html#quick-start)
   * [Command Overview]({{ baseUrl }}/UserGuide.html#command-overview)
-  * [Customer Commands]({{ baseUrl }}/UserGuide.html#customer-commands)
+  * [Person Commands]({{ baseUrl }}/UserGuide.html#person-commands)
   * [Booking Commands]({{ baseUrl }}/UserGuide.html#booking-commands)
   * [General Commands]({{ baseUrl }}/UserGuide.html#general-commands)
   * [FAQ]({{ baseUrl }}/UserGuide.html#faq)
